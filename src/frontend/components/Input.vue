@@ -1,0 +1,34 @@
+<script setup lang="ts">
+import { computed } from 'vue';
+
+
+const props = defineProps<{
+    label: string
+    name: string
+    modelValue: string
+    placeholder: string
+    required?: boolean
+    disabled?: boolean
+    type: 'number' | 'input' | 'email'
+}>()
+
+const emit = defineEmits(['update:modelValue']);
+
+const internalValue = computed({
+    get() {
+        return props.modelValue;
+    },
+    set(newValue: string) {
+        return emit('update:modelValue', newValue);
+    }
+})
+
+</script>
+
+<template>
+    <div class="flex flex-col">
+        <label :for="name">{{ label }} <span v-if="required" class="text-red">*</span></label>
+        <input v-model="internalValue" :type="type" :required="required" :disabled="disabled" :placeholder="placeholder"
+            :name="name" :label="label" />
+    </div>
+</template>
