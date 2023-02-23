@@ -4,7 +4,7 @@ import { mount } from '@vue/test-utils'
 import Button from '../Button.vue'
 
 describe('Button', () => {
-  it('renders properly', () => {
+  it('should render properly', () => {
     const wrapper = mount(Button, {
       props: {
         text: 'Save',
@@ -14,5 +14,9 @@ describe('Button', () => {
       }
     })
     expect(wrapper.text()).toContain('Save')
-  })
+  });
+  // it('should be gray and show a loading indicator when loading === true', () => {
+  // });
+  // it('should show feedback text below the button', () => {
+  // });
 })

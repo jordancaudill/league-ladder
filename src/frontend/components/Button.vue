@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from 'vue';
+
 
 const props = defineProps<{
     text: string
@@ -17,16 +19,20 @@ const backgroundColors = {
     red: 'bg-red hover:bg-red-dark'
 };
 const normalColor = backgroundColors[props.color];
+const showDisabledState = computed(() => {
+  return !!(props.disabled || props.loading || props.feedbackType)
+});
+const buttonText = computed(() => {
+  return props.loading ? '' : (props.feedbackType || props.text)
+});
 </script>
 
 <template>
     <div> 
-        <button :disabled="disabled || loading || !!feedbackType" :class="[
-            (disabled || feedbackType || loading) ? backgroundColors.disabled : normalColor
-        ]" @click="click" >
+        <button :disabled="showDisabledState" :class="[ showDisabledState ? backgroundColors.disabled : normalColor ]" @click="click" >
             <font-awesome-icon v-if="loading" icon="fa-solid fa-circle-notch" class="animate-spin fill-white" />
             {{
-                loading ? '' : (feedbackType || text)
+                buttonText
             }}
         </button>
 
