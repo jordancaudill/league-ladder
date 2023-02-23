@@ -43,7 +43,6 @@ const asyncLoadData = async () => {
   }, 5000);
 }
 const message = ref<string>('')
-  console.log(message.value)
 </script>
 
 <template>
@@ -84,13 +83,13 @@ const message = ref<string>('')
     <h5 class="mt-8">Inputs</h5>
     <section aria-label="Inputs" class="w-96">
      message: {{ message }}
-      <Input name="message" v-model="message" type="email" placeholder="Just an email input..." class="mr-5 mb-5" label="Email Address" :model="message" />
-      <Input name="message" v-model="message" type="input" placeholder="This is a disabled input..." class="mr-5 mb-5" :disabled="true" :model="message"
+      <Input name="message" v-model="message" type="email" placeholder="Just an email input..." class="mr-5 mb-5" label="Email Address"  />
+      <Input name="message" v-model="message" type="text" placeholder="This is a disabled input..." class="mr-5 mb-5" :disabled="true" 
         label="Disabled Input" />
-      <Input type="input" placeholder="This is a required input..." class="mr-5 mb-5" :required="true" :model="message"
+      <Input type="text" placeholder="This is a required input..." class="mr-5 mb-5" :required="true" 
         label="Required Input" name="message" v-model="message"/>
       <Select name="message" placeholder="This is a select..." class="mr-5 mb-5" label="Select" :options="selectOptions"
-        :model="message" v-model="message"/>
+       v-model="message"/>
       <Select name="message" placeholder="This is required..." :required="true" class="mr-5 mb-5" label="Required Select"
         :options="selectOptions" v-model="message" />
       <Select name="message" placeholder="This is disabled..." :disabled="true" class="mr-5 mb-5" label="Disabled Select"

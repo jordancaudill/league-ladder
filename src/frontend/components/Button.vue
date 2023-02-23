@@ -5,7 +5,7 @@ const props = defineProps<{
     disabled?: boolean
     loading?: boolean
     color: 'green' | 'blue' | 'red'
-    click: ((payload: MouseEvent) => void) | undefined
+    click?: ((payload: MouseEvent) => void) | undefined
     type: 'button' | 'submit'
     feedbackText?: string
     feedbackType?: 'success' | 'error'

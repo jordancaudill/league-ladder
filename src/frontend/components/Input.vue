@@ -9,7 +9,7 @@ const props = defineProps<{
     placeholder: string
     required?: boolean
     disabled?: boolean
-    type: 'number' | 'input' | 'email'
+    type: 'number' | 'text' | 'email' | 'password'
 }>()
 
 const emit = defineEmits(['update:modelValue']);

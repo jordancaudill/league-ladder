@@ -9,17 +9,6 @@ const paths: Paths = {
             tags: ['Authentication'],
             summary: 'Signup',
             description: 'Signup',
-            // middleware: [
-            //     (req, res, next, db) => {
-            //         mustOwnResource(
-            //             req,
-            //             res,
-            //             next,
-            //             db.Attachment,
-            //             parseInt(req.params.id)
-            //         );
-            //     },
-            // ],
             requestBody: {
                 description:
                     'Signup for the website.',
@@ -27,7 +16,7 @@ const paths: Paths = {
                 content: {
                     'application/json': {
                         schema: {
-                            $ref: '#/components/schemas/SomeBody',
+                            $ref: '#/components/schemas/SignupRequestBody',
                         },
                     },
                 },
@@ -38,7 +27,7 @@ const paths: Paths = {
                     content: {
                         'application/json': {
                             schema: {
-                                $ref: '#/components/schemas/User',
+                                $ref: '#/components/schemas/PublicUser',
                             },
                         },
                     },
@@ -62,7 +51,7 @@ const paths: Paths = {
                 content: {
                     'application/json': {
                         schema: {
-                            $ref: '#/components/schemas/SomeBody',
+                            $ref: '#/components/schemas/LoginRequestBody',
                         },
                     },
                 },
@@ -73,7 +62,7 @@ const paths: Paths = {
                     content: {
                         'application/json': {
                             schema: {
-                                $ref: '#/components/schemas/User',
+                                $ref: '#/components/schemas/PublicUser',
                             },
                         },
                     },

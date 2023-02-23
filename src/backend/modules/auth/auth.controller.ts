@@ -1,6 +1,8 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
+import { SignupRequestBody } from '../../../shared/types/User';
 import Database from '../../models';
+import { v4 as uuidv4 } from 'uuid';
 const bcrypt = require('bcrypt');
 
 export default {
@@ -9,11 +11,17 @@ export default {
         res: express.Response,
         db: Database
     ): Promise<express.Response> => {
-        const { email, password } = req.body;
-        const hashedPassword = bcrypt.hash(password, 10);
-        const user = new db.Users({ email, password: hashedPassword });
+        const { email, password, birthDate, username } = req.body as SignupRequestBody;
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const user = new db.Users({
+            id: uuidv4(),
+            email,
+            password: hashedPassword,
+            birthDate,
+            username,
+        });
         await user.save();
-        return res.json({ message: 'Signup successful.' });
+        return res.send(user);
     },
     login: async (
         req: express.Request,
